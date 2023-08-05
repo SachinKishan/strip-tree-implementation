@@ -1,9 +1,9 @@
 # strip tree implementation
  I realized no one has tried making an implementation of them, so I decided to make one
 
- This is an implementation of the strip tree data structure from this paper:Paper[https://dl.acm.org/doi/10.1145/358645.358661]
+ This is an implementation of the strip tree data structure from this paper: Paper[https://dl.acm.org/doi/10.1145/358645.358661]
 
- This is written in processing, there's a bit of extra stuff too involving ray tracing since this was part of a larger project to ray trace curves in 2D. If you arenot interested in that and only want the strip tree implentation, look at the strips.pde and kd-tree.pde for the implementations of creating, storing and drawing the tree structure based on user inputs.
+ This is written in processing, there's a bit of extra stuff too involving ray tracing since this was part of a larger project to ray trace curves in 2D. If you are not interested in that and only want the strip tree implementation, look at the strips.pde and kd-tree.pde for creating, storing, and drawing the tree structure based on user inputs.
 
 
 An output of the actual data structure after a user inputs points on the screen and clicks space: 
