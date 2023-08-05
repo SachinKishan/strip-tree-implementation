@@ -15,6 +15,8 @@ void keyPressed() {
   }
   points=new ArrayList<vec2>();  
   drawStrips=!drawStrips;
+  println("\nEntering root for output");
+  printStripTree(root);
   oldX=0;
   oldY=0;
   }

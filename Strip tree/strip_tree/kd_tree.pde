@@ -9,6 +9,7 @@ class Strip_node
    public float ye;
    public float wl;
    public float wr;
+   color col;
    public Strip_node(float _xb,
    float _yb,
    float _xe,
@@ -65,6 +66,25 @@ class Strip_node
         }
      }
    }
+   
+   public void printData() {
+        System.out.println("Node Data:");
+        System.out.println("xb: " + xb + ", yb: " + yb);
+        System.out.println("xe: " + xe + ", ye: " + ye);
+        System.out.println("wl: " + wl + ", wr: " + wr);
+        System.out.println("-----------------------");
+    }
 };
+void printStripTree(Strip_node node) {
+    if (node != null) {
+        println("->Left");
+        printStripTree(node.left);
+        println("->Node");
+        node.printData();
+        println("->Right");
+        printStripTree(node.right);
+    }
+    else {println("Empty");System.out.println("-----------------------");}
 
+}
 Strip_node root=new Strip_node();

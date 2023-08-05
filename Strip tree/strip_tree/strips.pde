@@ -1,29 +1,6 @@
- float calculatePerpDistance(float x1, float y1, float x2, float y2, float x3, float y3, String type) {
+ float calculatePerpDistance(float x1, float y1, float x2, float y2, float x3, float y3) {
    int dir=1;
-  /* if(x1>x2 && type.equals("dx"))
-   {
-         dir=-1;
-        float temp=x2;
-        x2=x1;
-        x1=temp;
-        
-        temp=y2;
-        y2=y1;
-        y1=temp;
-   }
-   else if(y1<y2 && type.equals("dy"))
-   {
-         dir=-1;
-        float temp=x2;
-        x2=x1;
-        x1=temp;
-        
-        temp=y2;
-        y2=y1;
-        y1=temp;
-   }*/
-   
-   // Step 1: Calculate the slope (m) and y-intercept (b) of the line passing through points A and B
+        // Step 1: Calculate the slope (m) and y-intercept (b) of the line passing through points A and B
         float m = (y2 - y1) / (x2 - x1);
         float b = y1 - m * x1;
         //println("m= "+m);
@@ -80,10 +57,18 @@ float y4 = xe.y + perpy;
 
 Box b=new Box(new vec2(x1,y1),new vec2(x2,y2),new vec2(x4,y4),new vec2(x3,y3));
 stripList.add(b);
+num++;
+color col=0;
+if(num>2)num=0;
+if(num==0)col=color(255,0,0);
+if(num==1)col=color(0,255,0);
+if(num==2)col=color(0,0,255);
+
 Strip_node data=new Strip_node(xs.x,xs.y,xe.x,xe.y,d1,d2,b);
         if(dir.equals(" "))
         {
           root=new Strip_node(xs.x,xs.y,xe.x,xe.y,d1,d2,b);
+          println("Root inserted");
         }
         else 
           root.insert(data,dir);
@@ -92,6 +77,7 @@ Strip_node data=new Strip_node(xs.x,xs.y,xe.x,xe.y,d1,d2,b);
 
 pg.beginDraw();
 pg.strokeWeight(0.5);
+pg.stroke(0);
 pg.line(x1,y1,x2,y2);   
 pg.line(x3,y3,x4,y4);  
 pg.line(x1,y1,x3,y3);
@@ -135,15 +121,6 @@ void drawStrip(ArrayList<vec2> points, String dir)
    
    
    int yminCoord=0,xminCoord=0,ymaxCoord=0,xmaxCoord=0;
-   
-   //find furthest points from given line
-   /*for(int i=0;i<points.size();i++)
-   {
-      if(ymax<points.get(i).y){ymax=points.get(i).y;ymaxCoord=i;}
-      if(ymin>points.get(i).y){ymin=points.get(i).y;yminCoord=i;}
-      if(xmax<points.get(i).x){xmax=points.get(i).x;xmaxCoord=i;}
-      if(xmin>points.get(i).x){xmin=points.get(i).x;xminCoord=i;}
-   }*/
    float dr=0,dl=0;int pr=0,pl=0;
    for(int i=1;i<points.size()-1;i++)
    {
@@ -159,31 +136,12 @@ void drawStrip(ArrayList<vec2> points, String dir)
    else if(pl!=0 && pl!=points.size()-1)next=pl;
    else next=-1;
    
-  // line(xs.x,xs.y,xe.x,xe.y);
-   /*line(xs.x,xs.y,points.get(pr).x,points.get(pr).y);
-      line(xs.x,xs.y,points.get(pl).x,points.get(pl).y);
-
-   line(xe.x,xe.y,points.get(pl).x,points.get(pl).y);
-   line(xe.x,xe.y,points.get(pr).x,points.get(pr).y);
-*/
-   
    //calculate parallel lines to draw border of box
 
     float d1=0,d2=0;
-  /*  if(alongy)
-    {
-      print("dy>dx");
-        d1 = calculatePerpDistance(xs.x,xs.y,xe.x,xe.y,points.get(pl).x,points.get(pl).y,"dy");
-        d2 = calculatePerpDistance(xs.x,xs.y,xe.x,xe.y,points.get(pr).x,points.get(pr).y,"dy");
-    }
-    else
-    {
-        d1 = calculatePerpDistance(xs.x,xs.y,xe.x,xe.y,points.get(pl).x,points.get(pl).y,"dx");
-        d2 = calculatePerpDistance(xs.x,xs.y,xe.x,xe.y,points.get(pr).x,points.get(pr).y,"dx");
-    }*/
     
-    d1 = calculatePerpDistance(xs.x,xs.y,xe.x,xe.y,points.get(pl).x,points.get(pl).y,"dy");
-    d2 = calculatePerpDistance(xs.x,xs.y,xe.x,xe.y,points.get(pr).x,points.get(pr).y,"dy");
+    d1 = calculatePerpDistance(xs.x,xs.y,xe.x,xe.y,points.get(pl).x,points.get(pl).y);
+    d2 = calculatePerpDistance(xs.x,xs.y,xe.x,xe.y,points.get(pr).x,points.get(pr).y);
     if(d1<0.1 || d1!=d1)d1=0;
     if(d2<0.1 || d2!=d2)d2=0;
     println(d1);

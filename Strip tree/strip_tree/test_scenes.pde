@@ -78,6 +78,8 @@ void box_test()
   
 }
 Strip_node temp=new Strip_node(root);
+
+
 void curve_test()
 {
 //make curve input
